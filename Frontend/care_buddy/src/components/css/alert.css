@@ -1,0 +1,77 @@
+/* swal fire */
+.swal2-container{
+    z-index: 1000000;
+  }
+  
+  .swal2-popup {
+    width: 20% !important; /* Adjust width */
+    border-radius: 10px; /* Optional: Add rounded corners */
+  }
+  
+  .swal2-title {
+    font-size: 1.2em;
+    color: var(--mainColLight); /* Example: blue title */
+    /* font-weight: bold; */
+  }
+  
+  .swal2-confirm {
+    font-size: 0.8em !important;
+    background-color: var(--mainColLight) !important; /* Example: green button */
+    color: white !important;
+    border-radius: 5px;
+  }
+  
+  .swal2-deny {
+    font-size: 0.8em !important;
+    background-color: #dc3545 !important; /* Example: red button */
+    color: white !important;
+    border-radius: 5px;
+  }
+  
+  .swal2-cancel {
+    font-size: 0.8em !important;
+    background-color: #6c757d !important; /* Example: gray button */
+    color: white !important;
+    border-radius: 5px;
+  }
+  
+  .swal2-icon {
+    color: var(--mainColLight); /* Example: Green color for success icon */
+    font-size: 0.7em; /* Adjust icon size */
+  }
+  
+  .swal2-icon.swal2-error {
+    color: #dc3545 !important; /* Example: Red color for error icon */
+    font-size: 0.7em !important; /* Adjust icon size */
+  }
+  
+  .swal2-title.swal2-error-title {
+    font-size: 1em !important; /* Customize title font size */
+    /* font-weight: bold !important; Make the title bold */
+    color: #b71c1c !important; /* Darker red for the error title */
+  }
+  
+  .swal2-html-container {
+    font-size: 0.8em !important; /* Customize text font size */
+    color: #555 !important; /* Gray for the text */
+    font-weight: 600 !important;
+  }
+  
+  .swal2-timer-progress-bar {
+    background-color: var(--mainColLight); /* Replace with your desired color */
+  }
+  
+  
+  /* Change the color of the success tick mark */
+  .swal2-success-line-tip,
+  .swal2-success-line-long {
+    background-color: var(--mainColLight) !important; /* Replace with your desired color */
+  }
+  
+  .swal2-success-ring {
+    border-color: var(--mainColLight) !important; /* Replace with your desired color */
+  }
+  
+  .swal2-icon.swal2-success {
+    border-color: var(--mainColLight) !important; /* Replace with your desired color */
+  }

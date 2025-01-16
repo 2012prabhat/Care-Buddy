@@ -1,0 +1,83 @@
+
+.light{
+  --iconCol:#67a97b;
+  --bgCol:white;
+  --backCol:#f9fafc
+
+}
+
+.dark{
+  --iconCol:red;
+  --bgCol:black;
+}
+
+.card{
+  background: hsla(225, 78%, 59%, 1);
+
+background: linear-gradient(135deg, hsla(225, 78%, 59%, 1) 0%, hsla(177, 94%, 41%, 1) 54%);
+
+background: -moz-linear-gradient(135deg, hsla(225, 78%, 59%, 1) 0%, hsla(177, 94%, 41%, 1) 54%);
+
+background: -webkit-linear-gradient(135deg, hsla(225, 78%, 59%, 1) 0%, hsla(177, 94%, 41%, 1) 54%);
+}
+
+body{
+  font-family: calibri;
+}
+
+/* Light Theme */
+body.light {
+  background-color:#f9fafc;
+  color: #333;
+}
+
+/* Dark Theme */
+body.dark {
+  background-color: #2d2d30;
+  color: #ddd;
+}
+
+/* Theme 3 */
+body.theme3 {
+  background-color: #f0f0f0;
+  color: #222;
+}
+
+/* Theme 4 */
+body.theme4 {
+  background-color: #222;
+
+  color: #fff;
+}
+
+
+.light .tableHead , .light .tablePageActive{
+  background: var(--mainColLight);
+  color: white;
+}
+
+.dark .tableHead , .dark .tablePageActive{
+  background: var(--mainColDark);
+  color: black;
+}
+
+.light .activeBtn{
+  background: var(--mainColLight);
+  border-bottom: 2px solid black;
+
+}
+
+.dark .activeBtn{
+  background: var(--mainColLight);
+}
+
+/* table tr:nth-child(even){
+  background: #f2f2f2;
+  color: black;
+} */
+
+
+
+
+
+

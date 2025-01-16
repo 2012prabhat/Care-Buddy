@@ -1,0 +1,30 @@
+.light .navbar{
+  
+}
+
+.dark .navbar{
+
+}
+.navbar .navActiveCol{
+    color: #2ecc71;
+}
+
+.light .navbar .menuBtn{
+    color: white;
+}
+
+.light .navbar .userBtns{
+    color: white;
+}
+
+.light .navbar .dropDown{
+    color: black;
+    background: white;
+}
+
+
+.dark .navbar .dropDown{
+    color: black;
+    background: white;
+}
+
