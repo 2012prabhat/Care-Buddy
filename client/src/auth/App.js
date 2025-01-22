@@ -85,14 +85,7 @@ const App = () => (
                 }
               />
               <Route path="/unauthorized" element={<Unauthorized />} />
-              <Route
-                path="/dashboard"
-                element={
-                  <ProtectedRoute requiredRoles={["admin"]}>
-                    <Dashboard />
-                  </ProtectedRoute>
-                }
-              />
+              
               <Route
                 path="*"
                 element={

@@ -31,11 +31,10 @@ process.on('unhandledRejection',err=>{
   })
 })
 
-process.on('uncaughtExcepion',err=>{
-  console.log('Uncaught Exception');
-  console.log(err.name,err.message);
-  process.exit(1)
 
-})
+process.on('uncaughtException', (err) => {
+  console.error('There was an uncaught error', err);
+  process.exit(1); // Let Nodemon restart the app
+});
 
 

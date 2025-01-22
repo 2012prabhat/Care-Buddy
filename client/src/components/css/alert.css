@@ -10,13 +10,13 @@
   
   .swal2-title {
     font-size: 1.2em;
-    color: var(--mainColLight); /* Example: blue title */
+    color: var(--iconCol); /* Example: blue title */
     /* font-weight: bold; */
   }
   
   .swal2-confirm {
     font-size: 0.8em !important;
-    background-color: var(--mainColLight) !important; /* Example: green button */
+    background-color: var(--iconCol) !important; /* Example: green button */
     color: white !important;
     border-radius: 5px;
   }
@@ -36,7 +36,7 @@
   }
   
   .swal2-icon {
-    color: var(--mainColLight); /* Example: Green color for success icon */
+    color: var(--iconCol); /* Example: Green color for success icon */
     font-size: 0.7em; /* Adjust icon size */
   }
   
@@ -58,20 +58,20 @@
   }
   
   .swal2-timer-progress-bar {
-    background-color: var(--mainColLight); /* Replace with your desired color */
+    background-color: var(--iconCol); /* Replace with your desired color */
   }
   
   
   /* Change the color of the success tick mark */
   .swal2-success-line-tip,
   .swal2-success-line-long {
-    background-color: var(--mainColLight) !important; /* Replace with your desired color */
+    background-color: var(--iconCol) !important; /* Replace with your desired color */
   }
   
   .swal2-success-ring {
-    border-color: var(--mainColLight) !important; /* Replace with your desired color */
+    border-color: var(--iconCol) !important; /* Replace with your desired color */
   }
   
   .swal2-icon.swal2-success {
-    border-color: var(--mainColLight) !important; /* Replace with your desired color */
+    border-color: var(--iconCol) !important; /* Replace with your desired color */
   }

@@ -61,3 +61,42 @@ exports.addSlotsByDoctor = catchAsync(async (req, res) => {
           await doctor.save();
           res.status(200).json({ message: "Slots added successfully.", availableSlots: doctor.availableSlots });
         })
+
+
+        exports.deleteSlots = catchAsync(async (req, res) => {
+          const doctorId = req.user.id;
+          const { date, time } = req.body;
+        
+          // Validate input
+          if (!date || !time) {
+            return res.status(400).json({ message: "Date and time are required." });
+          }
+        
+          const doctor = await User.findById(doctorId);
+        
+          // Ensure the user is a doctor
+          if (doctor.role !== "doctor") {
+            return res.status(403).json({ message: "Only doctors can delete slots." });
+          }
+        
+          // Find the specific date's slots
+          const currentDateSlots = doctor.availableSlots.find(
+            (slot) => slot.date.toISOString() === new Date(date).toISOString()
+          );
+        
+          if (!currentDateSlots) {
+            return res.status(404).json({ message: "No slots found for the specified date." });
+          }
+        
+          // Filter out the slot to delete
+          currentDateSlots.slots = currentDateSlots.slots.filter((slot) => slot.time !== time);
+        
+          // Save the updated doctor record
+          await doctor.save();
+        
+          res.status(200).json({
+            message: "Slot deleted successfully.",
+            availableSlots: doctor.availableSlots,
+          });
+        });
+        

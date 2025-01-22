@@ -17,6 +17,16 @@ export const alertSuccess = (message) => {
   });
 };
 
+
+export const alertConfirm = async (message)=>{
+ return await Swal.fire({
+    title: message || "Are you sure ?",
+    showCancelButton: true,
+    confirmButtonText: "Yes",
+    cancelButtonText: "No",
+    icon: "warning",
+  });
+}
 // Function to show error alert
 export const alertError = (message) => {
   Swal.fire({

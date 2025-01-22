@@ -113,7 +113,7 @@ const Navbar = () => {
         <div className="icons border cursor-pointer shadow-sm h-[80%] overflow-hidden rounded-sm">
           <img
             // src={user?.profilePic === null ? userAvatar : user?.profilePic}
-            src={user==null ? userAvatar:user.profilePic}
+            src={user==null ? userAvatar:(user?.profilePic===null?userAvatar:user?.profilePic)}
             alt="profile pic"
             className="h-[100%]"
           />

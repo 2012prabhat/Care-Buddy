@@ -1,10 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { AuthContext } from './AuthContext';
 import { Navigate } from 'react-router-dom';
 
 const ProtectedRoute = ({ children, requiredRoles = [], redirectPath = "/login" }) => {
     const { accessToken, user } = useContext(AuthContext);
     // Check if the user is authenticated
+    useEffect(()=>{
+        console.log(user?.role)
+    },[user])
     if (!accessToken) {
         return <Navigate to={redirectPath} />;
     }
@@ -12,7 +15,7 @@ const ProtectedRoute = ({ children, requiredRoles = [], redirectPath = "/login" 
     // Check if the user has any of the required roles
     if (
         requiredRoles.length > 0 &&
-        (!user || !user.roles || !user.roles.some(role => requiredRoles.includes(role)))
+        (!user || !user.role || !requiredRoles.includes(user.role))
     ) {
         return <Navigate to="/unauthorized" />;
     }
