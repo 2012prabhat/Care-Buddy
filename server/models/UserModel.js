@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
   role: { type: String, enum: ["user", "doctor"], required: true },
   verified: { type: Boolean, default: false },
   verificationToken: { type: String },
+
   speciality: {
     type: String,
     required: function () {
@@ -19,6 +20,12 @@ const userSchema = new mongoose.Schema({
       return this.role === "doctor"; // Ensure the field is required only for doctors
     },
    
+  },
+  consultingFees: {
+    type: Number,
+    required: function () {
+      return this.role === "doctor"; // Ensure the field is required only for doctors
+    },
   },
 
   profilePic: { type: String, default: '' },

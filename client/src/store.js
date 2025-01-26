@@ -1,10 +1,11 @@
 // app/store.js
 import { configureStore } from '@reduxjs/toolkit';
+import doctorReducer from './slices/doctorSlice'
 
 
 const store = configureStore({
   reducer: {
-    // userProfileSlice,
+    doctors:doctorReducer
   },
 });
 

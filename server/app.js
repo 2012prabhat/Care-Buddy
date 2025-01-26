@@ -38,7 +38,7 @@ app.use(cors(corsOptions));
 // Limit requests from same IP
 const limiter = rateLimit({
   windowMs: 10 * 60 * 1000, // 10 minutes
-  limit: 100, // Limit each IP to 100 requests per window
+  limit: 10000, // Limit each IP to 100 requests per window
   standardHeaders: 'draft-7', // Combined RateLimit headers
   legacyHeaders: false, // Disable X-RateLimit-* headers
   message: {

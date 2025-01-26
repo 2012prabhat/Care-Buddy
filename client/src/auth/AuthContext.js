@@ -27,6 +27,8 @@ export const AuthProvider = ({ children }) => {
             try {
                 console.log("Thie is fetch access token function")
                 const response = await api.post('/auth/refresh');
+        console.log("refreshhhhh")
+
                 setAccessToken(response.data.accessToken);
                 console.log('this is resp',response)
                 // setUser(userProfile)
@@ -41,7 +43,6 @@ export const AuthProvider = ({ children }) => {
 
 
         };
-
         if (!accessToken) fetchAccessToken();
         else setIsLoading(false);
     }, [accessToken]);

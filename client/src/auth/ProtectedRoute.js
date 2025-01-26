@@ -9,7 +9,7 @@ const ProtectedRoute = ({ children, requiredRoles = [], redirectPath = "/login" 
         console.log(user?.role)
     },[user])
     if (!accessToken) {
-        return <Navigate to={redirectPath} />;
+        // return <Navigate to={redirectPath} />;
     }
 
     // Check if the user has any of the required roles
