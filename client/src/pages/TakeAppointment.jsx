@@ -6,6 +6,9 @@ import Heading from "../components/Heading";
 import Calender from "../components/Calender/Calendar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Loader from '../components/Loader'
+import { alertSuccess,alertError,alertConfirm } from "../components/Alert";
+import api from "../auth/api";
+
 
 function TakeAppointment() {
   const dispatch = useDispatch();
@@ -57,6 +60,25 @@ function TakeAppointment() {
     setCurrDoctor(doctor);
   };
 
+  const bookAppointment = async (time)=>{
+    let date = new Date(selectedDate).toISOString().split('T')[0];
+    const data = {
+        date,doctorId:currDoctor._id,time
+    }
+    const confirm = await alertConfirm(`Are you sure you want to book the appointment for ${date} at ${time} ?`);
+   
+    if(!confirm.isConfirmed) return;
+    
+    try{
+        const appointmentResp = await api.post('/appointment/book',data)
+        alertSuccess('Appointment Book Successfully!')
+        const resp = await dispatch(fetchDoctors());
+        setDoctor(resp.payload);
+    }catch(err){
+        alertError('Appointment booking failed, try again after some time.')
+    }
+  }
+
 
 if(loading) return <Loader></Loader>
  
@@ -106,9 +128,10 @@ if(loading) return <Loader></Loader>
                        {availableSlots?.map((slot, idx) => {
                          return (
                            <div
+                           onClick={()=>bookAppointment(slot.time)}
                              key={idx}
-                             className={`hover:text-white cursor-pointer transition-all  hover:bg-[var(--iconCol)] mt-4 bg-[var(--bgCol)] p-2 min-w-28 flex justify-between items-center rounded-md ${
-                               slot.isBooked && "var(--iconCol)"
+                             className={`hover:text-white cursor-pointer transition-all  hover:bg-[var(--iconCol)] mt-4 bg-[var(--bgCol)] p-2 min-w-28 flex justify-between items-center rounded-md d ${
+                               slot.isBooked && " pointer-events-none opacity-50"
                              } `}
                            >
                              {slot.time}{" "}

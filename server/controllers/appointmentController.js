@@ -1,6 +1,7 @@
 const catchAsync = require("../utils/catchAsync");
 const User = require("../models/UserModel")
-const Appointment = require("../models/Appointment")
+const Appointment = require("../models/Appointment");
+const Earning = require("../models/EarningModel");
 
 exports.bookAppointment = catchAsync(async (req, res) => {
       const { doctorId, date, time } = req.body;
@@ -184,9 +185,26 @@ exports.updateAppointment = catchAsync(async (req, res) => {
     await doctor.save();
   }
 
+
+  if(status === 'completed'){
+    const doctor = await User.findById(appointment.doctor);
+    const earning  = await new Earning({
+      doctor: appointment.doctor,
+      patient: appointment.patient,
+      appointment:appointment._id,
+      date:appointment.date,
+      time: appointment.time,
+      consultingFees:doctor.consultingFees
+
+    })
+    await earning.save();
+  }
+  
   // Update the appointment status
   appointment.status = status;
   await appointment.save();
+
+ 
 
   // Send success response with updated appointment details
   res.status(200).json({
@@ -201,6 +219,7 @@ exports.updateAppointment = catchAsync(async (req, res) => {
       status: appointment.status,
     },
   });
+
 });
 
 

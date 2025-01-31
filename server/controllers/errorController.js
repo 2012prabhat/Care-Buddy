@@ -28,6 +28,8 @@ const handleValidationErrorDB = err => {
 };
 
 const sendErrorDev = (err, res) => {
+  if(err.name === 'JsonWebTokenError') err = handleJWTError(err);
+  if(err.name === 'TokenExpiredError') err = handleJWTExpiredError(err);
   res.status(err.statusCode).json({
     status: err.status,
     error: err,

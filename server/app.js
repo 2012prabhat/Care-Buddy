@@ -16,6 +16,7 @@ const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const doctorRoutes = require('./routes/doctorRoutes');
 const appointmentRoutes = require('./routes/appointmentRoutes');
+const earningRoutes = require('./routes/earningRoutes')
 
 const app = express();
 const dotenv = require('dotenv');
@@ -97,6 +98,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/doctors', doctorRoutes);
 app.use('/api/appointment', appointmentRoutes);
+app.use('/api/earning',earningRoutes)
 
 // Handle unhandled routes
 app.all('*', (req, res, next) => {
