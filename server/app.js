@@ -99,6 +99,11 @@ app.use('/api/user', userRoutes);
 app.use('/api/doctors', doctorRoutes);
 app.use('/api/appointment', appointmentRoutes);
 app.use('/api/earning',earningRoutes)
+app.use('/',(req,res)=>{
+  res.status(200).json({
+    message:"Api is working fine"
+  })
+})
 
 // Handle unhandled routes
 app.all('*', (req, res, next) => {

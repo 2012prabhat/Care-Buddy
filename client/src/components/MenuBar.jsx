@@ -11,7 +11,7 @@ function MenuBar() {
     navigate(-1); // Navigate to the previous page
   };
   return (
-    <div className='h-8 bg-[var(--bgCol)] fixed top-[64px] border-y overflow-hidden border-gray-300 w-full flex items-center gap-7 pl-4 z-10'>
+    <div className='h-8 bg-[var(--bgCol)] fixed top-[64px] border-y overflow-hidden border-gray-300 w-full flex items-center gap-7 pl-4 '>
     
         <MenuBtn style={location.pathname==='/'?{pointerEvents:'none',opacity:0.5}:{}} title="Back" icon="back" onClick={handleGoBack}/>
         <MenuBtn title="Dashboard" icon="home" redirect="/"/>

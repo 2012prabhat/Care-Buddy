@@ -14,10 +14,12 @@ import SearchBar from "../components/SearchBar";
 import NotificationBell from "./NotificationBell";
 import Svg from "./Svg";
 import MenuBar from "./MenuBar";
+import UserDrop from "./UserDrop";
 
 const Navbar = () => {
   const location = useLocation();
   const { user, setAccessToken } = useContext(AuthContext);
+  const [isOpen, setIsOpen] = useState(false);
 
   const [openThemeDropdown, setOpenThemeDropdown] = useState(false); // State for theme dropdown
   const navigate = useNavigate();
@@ -110,13 +112,15 @@ const Navbar = () => {
             color='var(--iconCol)'
         />
 
-        <div className="icons border cursor-pointer shadow-sm h-9 w-9 object-cover overflow-hidden rounded-full">
+        <div className="icons border cursor-pointer shadow-sm h-9 w-9 object-cover overflow-hidden rounded-full" onClick={()=>setIsOpen(!isOpen)}>
           <img
             // src={user?.profilePic === null ? userAvatar : user?.profilePic}
             src={user==null ? userAvatar:(user?.profilePic===null?userAvatar:user?.profilePic)}
             alt="profile pic"
             className=""
           />
+
+{isOpen && <UserDrop user={user}/> }
     
         </div>
 
