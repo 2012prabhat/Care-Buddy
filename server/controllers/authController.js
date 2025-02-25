@@ -29,14 +29,15 @@ const sendMail = catchAsync(async (mailOptions) => {
 });
 
 exports.signUp = catchAsync(async (req, res) => {
-  const { username, email, password, confirmPassword, role, speciality, experience } = req.body;
+  const { username, email, password, confirmPassword, role, speciality, experience, consultingFees } = req.body;
 
   // Check for missing required fields
   const requiredFields = [username, email, password, confirmPassword, role];
-  const doctorFields = role === 'doctor' ? [speciality, experience] : [];
+  const doctorFields = role === 'doctor' ? [speciality, experience,consultingFees] : [];
   
   // Combine all required fields based on the role
   const allRequiredFields = [...requiredFields, ...doctorFields];
+  console.log(allRequiredFields)
   
   if (allRequiredFields.some(field => !field)) {
     return res.status(400).json({ message: "All fields are required" });
@@ -66,24 +67,41 @@ exports.signUp = catchAsync(async (req, res) => {
     role,
     isVerified: false, // Add a field for verification in your User model
     verificationToken,
-    ...(role === 'doctor' && { speciality, experience }), // Add doctor-specific fields if the role is 'doctor'
+    ...(role === 'doctor' && { speciality, experience, consultingFees }), // Add doctor-specific fields if the role is 'doctor'
   });
 
   await newUser.save();
 
   // Send verification email
-  const verificationUrl = `http://your-frontend-url/verify?token=${verificationToken}`;
+  const verificationUrl = `${process.env.CLIENT_BASE_URL}/verify?token=${verificationToken}`;
   
   const mailOptions = {
-    from: `Care Buddy ${process.env.GMAIL_SMTP_USERNAME}`,
+    from: `Care Buddy <no-reply@carebuddy.com>`,
     to: email,
-    subject: "Verify your email",
+    subject: "Verify Your Email Address",
     html: `
-      <h1>Email Verification</h1>
-      <p>Hello ${username},</p>
-      <p>Please verify your email by clicking the link below:</p>
-      <a href="${verificationUrl}">Verify Email</a>
-      <p>If you did not sign up for this account, please ignore this email.</p>
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 8px;">
+        <div style="text-align: center; margin-bottom: 20px;">
+          <img src=${process.env.LOGO_URL} alt="Care Buddy Logo" style="width: 100px; height: auto;" />
+          <h1 style="color: #2d3748; font-size: 24px; margin-top: 10px;">Email Verification</h1>
+        </div>
+        <div style="color: #4a5568; font-size: 16px; line-height: 1.6;">
+          <p>Hello ${username},</p>
+          <p>Thank you for signing up with <strong>Care Buddy</strong>! To complete your registration, please verify your email address by clicking the button below:</p>
+          <div style="text-align: center; margin: 30px 0;">
+            <a href="${verificationUrl}" style="background-color: #3182ce; color: white; padding: 12px 24px; text-decoration: none; border-radius: 4px; font-size: 16px;">
+              Verify Email Address
+            </a>
+          </div>
+          <p>If the button above doesn't work, you can also copy and paste the following link into your browser:</p>
+          <p style="word-break: break-all; color: #3182ce; font-size: 14px;">${verificationUrl}</p>
+          <p>If you did not sign up for this account, please ignore this email.</p>
+        </div>
+        <div style="margin-top: 30px; text-align: center; color: #718096; font-size: 14px;">
+          <p>Best regards,</p>
+          <p><strong>The Care Buddy Team</strong></p>
+        </div>
+      </div>
     `,
   };
 
@@ -287,5 +305,4 @@ exports.logout = catchAsync(async (req, res) => {
     message: "Logged out successfully",
   });
 });
-
 

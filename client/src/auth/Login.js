@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from './AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { postData } from './Methods';
@@ -6,8 +6,10 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import '../components/css/login.css';
 import * as Yup from 'yup';
 import Logo from '../components/images/logo.png';
+import { alertError, alertSuccess } from '../components/Alert';
 
 const Login = () => {
+
     const navigate = useNavigate();
     const { setAccessToken, setUser } = useContext(AuthContext);
     const [isForgotPassword, setIsForgotPassword] = useState(false);
@@ -32,7 +34,8 @@ const Login = () => {
     const handleForgotPassword = async (values, { setSubmitting, setErrors }) => {
         const resp = await postData('/auth/forgot-password', { email: values.email });
         if (resp.name === 'AxiosError') {
-            setErrors({ email: resp.response.data.errors });
+            setErrors({ email: resp.response.data.message });
+            // alertError(resp.response.data.message)
         } else {
             alert('Password reset instructions have been sent to your email.');
             setIsForgotPassword(false); // Switch back to login form
@@ -153,6 +156,13 @@ const Login = () => {
                                                 onClick={() => setIsForgotPassword(true)}
                                             >
                                                 Forgot Password?
+                                            </span>
+                                            <br />
+                                            <span
+                                                className="text-blue-500 cursor-pointer"
+                                                onClick={() => navigate('/signup')}
+                                            >
+                                                Create an account?
                                             </span>
                                         </div>
                                     </>

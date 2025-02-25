@@ -13,6 +13,8 @@ import Availability from "../pages/Availability";
 import Patients from "../pages/Patients";
 import BookAppointments from "../pages/BookAppointments";
 import TakeAppointment from "../pages/TakeAppointment";
+import Signup from "./Signup";
+import VerifyEmail from "./VerifyEmail";
 const Login = React.lazy(() => import("./Login"));
 const Home = React.lazy(() => import("../pages/Home"));
 const NotFound = React.lazy(() => import("../NotFound"));
@@ -20,7 +22,7 @@ const NotFound = React.lazy(() => import("../NotFound"));
 const AppContent = () => {
   const location = useLocation();
 
-  const isLoginRoute = location.pathname === "/login";
+  const isLoginRoute = location.pathname === "/login" || location.pathname === "/signup" || location.pathname==="/verify";
 
   return (
     <>
@@ -32,6 +34,8 @@ const AppContent = () => {
         <Routes>
           {/* Public Routes */}
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/verify" element={<VerifyEmail />} />
           <Route path="/unauthorized" element={<Unauthorized />} />
 
           {/* Protected Routes */}

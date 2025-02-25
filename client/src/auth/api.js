@@ -70,7 +70,9 @@ api.interceptors.response.use(
 
                     // Clear tokens and redirect to login
                     localStorage.removeItem('accessToken');
-                    if (window.location.pathname !== '/login') {
+                    if (window.location.pathname !== '/login' 
+                        &&  window.location.pathname !== '/signup'
+                        &&  window.location.pathname !== '/verify') {
                         window.location.href = '/login'; // Redirect only if not on the login page
                     }
                     return Promise.reject(refreshError);

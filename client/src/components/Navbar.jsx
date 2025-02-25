@@ -35,7 +35,7 @@ const Navbar = () => {
     console.log("user is",user)
   }, []);
 
-  if (location.pathname === "/login") {
+  if (location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/verify") {
     return null; // Do not render Navbar on login page
   }
 

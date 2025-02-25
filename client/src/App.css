@@ -1,4 +1,6 @@
-
+body{
+  --iconCol:#67a97b;
+}
 .light{
   --iconCol:#67a97b;
   --iconColHover:#317144;
