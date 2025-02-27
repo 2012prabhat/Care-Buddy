@@ -26,11 +26,14 @@ function Earnings() {
         <Heading text="Your Earnings" />
         <div className="mr-12 text-xl flex gap-2 items-center">
           <FontAwesomeIcon icon="fa-solid fa-indian-rupee-sign" />
-          <div>{earning?.totalEarnings}</div>
+          <div className="text-[var(--iconCol)]">{earning?.totalEarnings}</div>
         </div>
       </div>
 
       <div className="earningListCont mt-40">
+        {earning?.list?.length===0 && <div className="w-full text-center pt-4">
+        There are no earning till now
+        </div>}
         {earning?.list?.map((m) => {
           return (
             <div

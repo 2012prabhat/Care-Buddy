@@ -125,6 +125,9 @@ if(loading) return <Loader></Loader>
 
       <div>Available Slots on {selectedDate.toDateString()}</div>
       <div className="flex gap-x-10 flex-wrap">
+        {!availableSlots && <>
+        <div className="text-center w-full mt-12">There are no appointments on selected date</div>
+        </>}
                        {availableSlots?.map((slot, idx) => {
                          return (
                            <div

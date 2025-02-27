@@ -6,7 +6,7 @@ const ProtectedRoute = ({ children, requiredRoles = [], redirectPath = "/login" 
     const { accessToken, user } = useContext(AuthContext);
     // Check if the user is authenticated
     useEffect(()=>{
-        console.log(user?.role)
+        console.log("role is",user?.role)
     },[user])
     if (!accessToken) {
         // return <Navigate to={redirectPath} />;
@@ -14,7 +14,7 @@ const ProtectedRoute = ({ children, requiredRoles = [], redirectPath = "/login" 
 
     // Check if the user has any of the required roles
     if (
-        requiredRoles.length > 0 &&
+        user && requiredRoles.length > 0 &&
         (!user || !user.role || !requiredRoles.includes(user.role))
     ) {
         return <Navigate to="/unauthorized" />;

@@ -15,6 +15,7 @@ import BookAppointments from "../pages/BookAppointments";
 import TakeAppointment from "../pages/TakeAppointment";
 import Signup from "./Signup";
 import VerifyEmail from "./VerifyEmail";
+import ResetPassword from "./ResetPassword"
 const Login = React.lazy(() => import("./Login"));
 const Home = React.lazy(() => import("../pages/Home"));
 const NotFound = React.lazy(() => import("../NotFound"));
@@ -22,7 +23,7 @@ const NotFound = React.lazy(() => import("../NotFound"));
 const AppContent = () => {
   const location = useLocation();
 
-  const isLoginRoute = location.pathname === "/login" || location.pathname === "/signup" || location.pathname==="/verify";
+  const isLoginRoute = location.pathname === "/login" || location.pathname === "/signup" || location.pathname==="/verify" || location.pathname==="/reset-password";
 
   return (
     <>
@@ -36,6 +37,7 @@ const AppContent = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/verify" element={<VerifyEmail />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/unauthorized" element={<Unauthorized />} />
 
           {/* Protected Routes */}
@@ -74,7 +76,7 @@ const AppContent = () => {
           <Route
             path="/earnings"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute requiredRoles={['doctor']}>
                 <Earnings />
               </ProtectedRoute>
             }
@@ -82,7 +84,7 @@ const AppContent = () => {
           <Route
             path="/availability"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute requiredRoles={['doctor']}>
                 <Availability />
               </ProtectedRoute>
             }

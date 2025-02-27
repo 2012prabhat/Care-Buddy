@@ -47,4 +47,11 @@ exports.updateProfilePic = catchAsync(async (req, res) => {
       user,
     });
   });
+
+
+exports.getUserStats = catchAsync(async(req,res)=>{
+    res.status(200).json({
+      message:"User Stats fetch successfully"
+    })
+})
   

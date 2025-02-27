@@ -37,7 +37,7 @@ const Login = () => {
             setErrors({ email: resp.response.data.message });
             // alertError(resp.response.data.message)
         } else {
-            alert('Password reset instructions have been sent to your email.');
+            alertSuccess('Password reset instructions have been sent to your email.');
             setIsForgotPassword(false); // Switch back to login form
         }
         setSubmitting(false);
@@ -106,7 +106,7 @@ const Login = () => {
                                                 htmlFor="username"
                                                 className="block text-gray-700 font-medium mb-2"
                                             >
-                                                Username
+                                                Email
                                             </label>
                                             <Field
                                                 type="text"

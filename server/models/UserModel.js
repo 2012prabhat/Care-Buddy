@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema({
     },
   },
 
-  profilePic: { type: String, default: '' },
+  profilePic: { type: String, default: null },
   availableSlots: [
     {
       date: { type: Date, required: true },

@@ -196,19 +196,30 @@ exports.forgotPassword = catchAsync(async (req, res) => {
   );
 
   // Password reset URL
-  const resetUrl = `http://your-frontend-url/reset-password/${resetToken}`;
+  const resetUrl = `${process.env.CLIENT_BASE_URL}/reset-password?token=${resetToken}`;
 
   // Send the email
   const mailOptions = {
-    from: `Your App ${process.env.GMAIL_SMTP_USERNAME}`,
+    from: `Care Buddy <support@carebuddy.com>`,
     to: user.email,
-    subject: "Password Reset",
+    subject: "Password Reset Request",
     html: `
-      <h1>Password Reset Request</h1>
-      <p>Hello ${user.username},</p>
-      <p>You requested to reset your password. Click the link below to reset it:</p>
-      <a href="${resetUrl}">Reset Password</a>
-      <p>If you did not request this, please ignore this email.</p>
+      <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.6;">
+        <div style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
+          <h1 style="font-size: 24px; color: #2c3e50; text-align: center;">Password Reset Request</h1>
+          <p style="font-size: 16px;">Hello ${user.username},</p>
+          <p style="font-size: 16px;">We received a request to reset your password. Click the button below to proceed:</p>
+          <div style="text-align: center; margin: 20px 0;">
+            <a href="${resetUrl}" style="background-color: #3498db; color: #fff; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-size: 16px;">Reset Password</a>
+          </div>
+          <p style="font-size: 14px; color: #777;">If you did not request this, please ignore this email. Your password will remain unchanged.</p>
+          <p style="font-size: 14px; color: #777;">For security reasons, this link will expire in 1 hour.</p>
+          <p style="font-size: 14px; color: #777;">If you have any questions, feel free to contact us at <a href="mailto:support@carebuddy.com" style="color: #3498db;">support@carebuddy.com</a>.</p>
+        </div>
+        <div style="text-align: center; margin-top: 20px; font-size: 12px; color: #777;">
+          <p>&copy; ${new Date().getFullYear()} Care Buddy. All rights reserved.</p>
+        </div>
+      </div>
     `,
   };
 

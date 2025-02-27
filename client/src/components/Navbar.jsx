@@ -35,7 +35,7 @@ const Navbar = () => {
     console.log("user is",user)
   }, []);
 
-  if (location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/verify") {
+  if (location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/verify" || location.pathname === "/reset-password") {
     return null; // Do not render Navbar on login page
   }
 
@@ -133,7 +133,7 @@ const Navbar = () => {
     </nav>
 
     
-    <MenuBar/>
+    <MenuBar user={user}/>
     </>
 
   );

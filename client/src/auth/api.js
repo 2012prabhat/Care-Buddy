@@ -72,8 +72,11 @@ api.interceptors.response.use(
                     localStorage.removeItem('accessToken');
                     if (window.location.pathname !== '/login' 
                         &&  window.location.pathname !== '/signup'
-                        &&  window.location.pathname !== '/verify') {
-                        window.location.href = '/login'; // Redirect only if not on the login page
+                        &&  window.location.pathname !== '/verify'
+                        &&  window.location.pathname !== '/reset-password'
+                    ) {
+                        window.location.href = '/login';
+                        // Redirect only if not on the login page
                     }
                     return Promise.reject(refreshError);
                 }

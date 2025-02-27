@@ -2,9 +2,10 @@ import React from 'react'
 import Svg from "./Svg" 
 import MenuBtn from './MenuBtn'
 import { useLocation, useNavigate } from 'react-router-dom';
-function MenuBar() {
+function MenuBar({user}) {
   const navigate = useNavigate();
   const location = useLocation();
+
 
   const handleGoBack = () => {
     if(location.pathname==='/') return 
@@ -16,8 +17,17 @@ function MenuBar() {
         <MenuBtn style={location.pathname==='/'?{pointerEvents:'none',opacity:0.5}:{}} title="Back" icon="back" onClick={handleGoBack}/>
         <MenuBtn title="Dashboard" icon="home" redirect="/"/>
         <MenuBtn title="Appointments" icon="notepad" redirect="/appointments"/>
-        <MenuBtn title="Availability" icon="calender" redirect="/availability"/>
-        <MenuBtn title="Earnings" icon="dollar" redirect="/earnings"/>
+
+
+      {user?.role==='doctor' && 
+      <>
+            <MenuBtn title="Availability" icon="calender" redirect="/availability"/>
+<MenuBtn title="Earnings" icon="dollar" redirect="/earnings"/>
+      </>
+
+}
+
+  
 
         
 
