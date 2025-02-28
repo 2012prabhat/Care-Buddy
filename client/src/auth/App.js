@@ -16,6 +16,7 @@ import TakeAppointment from "../pages/TakeAppointment";
 import Signup from "./Signup";
 import VerifyEmail from "./VerifyEmail";
 import ResetPassword from "./ResetPassword"
+import Profile from "../pages/Profile"
 const Login = React.lazy(() => import("./Login"));
 const Home = React.lazy(() => import("../pages/Home"));
 const NotFound = React.lazy(() => import("../NotFound"));
@@ -54,6 +55,14 @@ const AppContent = () => {
             element={
               <ProtectedRoute>
                 <Appointments />
+              </ProtectedRoute>
+            }
+          />
+           <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile/>
               </ProtectedRoute>
             }
           />
