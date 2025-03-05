@@ -17,6 +17,7 @@ import Signup from "./Signup";
 import VerifyEmail from "./VerifyEmail";
 import ResetPassword from "./ResetPassword"
 import Profile from "../pages/Profile"
+import MyDoctors from "../pages/MyDoctors"
 const Login = React.lazy(() => import("./Login"));
 const Home = React.lazy(() => import("../pages/Home"));
 const NotFound = React.lazy(() => import("../NotFound"));
@@ -99,10 +100,19 @@ const AppContent = () => {
             }
           />
           <Route
-            path="/patients"
+            path="/my-patients"
             element={
               <ProtectedRoute>
                 <Patients />
+              </ProtectedRoute>
+            }
+          />
+
+<Route
+            path="/my-doctors"
+            element={
+              <ProtectedRoute>
+                <MyDoctors />
               </ProtectedRoute>
             }
           />

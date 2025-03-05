@@ -161,9 +161,9 @@ const Navbar = () => {
               alt="profile pic"
               className="h-full w-full object-cover"
             />
-            {isOpen && <UserDrop user={user} />}
           </div>
           <div ref={dropdownRef} className="h-[100%] flex items-center" onClick={() => setIsOpen(!isOpen)}>
+            {isOpen && <UserDrop user={user} />}
           <Svg
             type="settings"
             className="icons border px-3 py-1 cursor-pointer shadow-sm h-[80%] rounded-sm "

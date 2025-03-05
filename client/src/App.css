@@ -16,13 +16,13 @@ body{
 }
 
 .card{
-  background: hsla(225, 78%, 59%, 1);
+  /* background: hsla(225, 78%, 59%, 1); */
 
-background: linear-gradient(135deg, hsla(225, 78%, 59%, 1) 0%, hsla(177, 94%, 41%, 1) 54%);
+/* background: linear-gradient(135deg, hsla(225, 78%, 59%, 1) 0%, hsla(177, 94%, 41%, 1) 54%); */
 
-background: -moz-linear-gradient(135deg, hsla(225, 78%, 59%, 1) 0%, hsla(177, 94%, 41%, 1) 54%);
+/* background: -moz-linear-gradient(135deg, hsla(225, 78%, 59%, 1) 0%, hsla(177, 94%, 41%, 1) 54%); */
 
-background: -webkit-linear-gradient(135deg, hsla(225, 78%, 59%, 1) 0%, hsla(177, 94%, 41%, 1) 54%);
+/* background: -webkit-linear-gradient(135deg, hsla(225, 78%, 59%, 1) 0%, hsla(177, 94%, 41%, 1) 54%); */
 }
 
 body{

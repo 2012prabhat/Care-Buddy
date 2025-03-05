@@ -2,16 +2,15 @@ import React, { useEffect, useState } from 'react'
 import Heading from '../components/Heading'
 import { fetchDoctors } from '../slices/doctorSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import PatientCard from '../components/PatientCard'
+import DoctorCard from '../components/DoctorCard'
 import api from '../auth/api'
 
-function Patients() {
-  const [patientsList,setPatientsList] = useState([]);
-
-    const fetchMyPatients = async ()=>{
+function MyDoctors() {
+  const [doctors,setDoctors] = useState([]);
+    const fetchMyDoctors = async ()=>{
       try{
-        const resp = await api.get("user/my-patients");
-        setPatientsList(resp?.data?.data);
+        const resp = await api.get("user/my-doctors");
+        setDoctors(resp?.data?.data);
       }catch(err){
 
       }
@@ -19,17 +18,17 @@ function Patients() {
 
     }
     useEffect(() => {
-      fetchMyPatients()
+      fetchMyDoctors()
     }, []);
 
   return (
     <>
     <div className='flex flex-start'>
-    <Heading text="My Patients" />
+    <Heading text="My Doctors" />
     </div>
     <div className="doctorCont flex w-full flex-wrap gap-x-8 gap-y-4">
-    {patientsList?.map((patient) => (
-        <PatientCard key={patient._id} patient={patient} />
+    {doctors?.map((doctor) => (
+        <DoctorCard key={doctor._id} doctor={doctor} />
       ))}
     </div>
     
@@ -38,4 +37,4 @@ function Patients() {
   )
 }
 
-export default Patients
+export default MyDoctors

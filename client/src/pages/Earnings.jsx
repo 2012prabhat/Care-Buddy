@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Heading from "../components/Heading";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
 import api from "../auth/api";
 
 function Earnings() {
@@ -32,7 +31,7 @@ function Earnings() {
 
       <div className="earningListCont mt-40">
         {earning?.list?.length===0 && <div className="w-full text-center pt-4">
-        There are no earning till now
+        There are no earnings till now
         </div>}
         {earning?.list?.map((m) => {
           return (

@@ -22,7 +22,7 @@ function UserDrop({user}) {
     
   }
   return (
-    <div className=" z-20 absolute mt-2 right-2  bg-[var(--bgCol)] border rounded-lg shadow-lg">
+    <div className=" z-20 absolute mt-56 right-7  bg-[var(--bgCol)] border rounded-lg shadow-lg">
     <br />
         <div className='p-2 font-bold text-center'>You are logged in as</div>
         <div className='p-2 font-bold text-center'>{user.username}</div>

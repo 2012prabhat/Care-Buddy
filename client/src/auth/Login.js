@@ -7,6 +7,8 @@ import '../components/css/login.css';
 import * as Yup from 'yup';
 import Logo from '../components/images/logo.png';
 import { alertError, alertSuccess } from '../components/Alert';
+import api from './api';
+import axios from 'axios';
 
 const Login = () => {
 
@@ -15,20 +17,23 @@ const Login = () => {
     const [isForgotPassword, setIsForgotPassword] = useState(false);
 
     const handleLogin = async (values, { setSubmitting, setErrors }) => {
-        const resp = await postData('/auth/login', {
-            email: values.username,
-            password: values.password,
-        });
 
-        if (resp.name === 'AxiosError') {
-            let errText = resp?.response?.data?.errors;
-            setErrors({ general: errText });
-        } else {
+        try{
+            const resp = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/login`, {
+                email: values.username,
+                password: values.password,
+            });
+            
             setUser(resp.data.user);
             setAccessToken(resp.data.accessToken);
             navigate('/');
-        }
+        }catch(err){
+            let errText = err?.response?.data?.message;
+            console.log(err)
+            setErrors({ general: errText });
+        }finally{
         setSubmitting(false);
+        }
     };
 
     const handleForgotPassword = async (values, { setSubmitting, setErrors }) => {
