@@ -6,10 +6,6 @@ import api from "../auth/api";
 import {alertSuccess, alertError, alertConfirm} from '../components/Alert'
 import { AuthContext } from "../auth/AuthContext";
 
-
-
-
-
 function Appointments() {
     const { user, setAccessToken } = useContext(AuthContext);
   
@@ -48,7 +44,6 @@ function Appointments() {
 
   const setSelectedAppointments = (appointmentList=appList)=>{
     const getAppStatus = status=>appointmentList.filter((f)=>f.status===status);
-    
       if(activeTab==='cancelled') setFilteredAppList(getAppStatus('cancelled'));
       if(activeTab==='completed') setFilteredAppList(getAppStatus('completed'));
       if(activeTab==='pending') setFilteredAppList(getAppStatus('pending'));
